@@ -41,7 +41,7 @@ const Page = () => {
     };
 
     getCategories();
-  }, []);
+  }, [api]);
 
   const convertWebPtoPNG = (file) => {
     return new Promise((resolve, reject) => {
