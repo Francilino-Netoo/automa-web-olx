@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/automa-web-olx/static/css/main.a5f96578.css",
-    "main.js": "/automa-web-olx/static/js/main.36c644f3.js",
+    "main.js": "/automa-web-olx/static/js/main.feabe559.js",
     "index.html": "/automa-web-olx/index.html",
     "main.a5f96578.css.map": "/automa-web-olx/static/css/main.a5f96578.css.map",
-    "main.36c644f3.js.map": "/automa-web-olx/static/js/main.36c644f3.js.map"
+    "main.feabe559.js.map": "/automa-web-olx/static/js/main.feabe559.js.map"
   },
   "entrypoints": [
     "static/css/main.a5f96578.css",
-    "static/js/main.36c644f3.js"
+    "static/js/main.feabe559.js"
   ]
 }
