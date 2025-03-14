@@ -43,6 +43,45 @@ const Page = () => {
     getCategories();
   }, []);
 
+  const convertWebPtoPNG = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const newFile = new File(
+                [blob],
+                file.name.replace(".webp", ".png"),
+                {
+                  type: "image/png",
+                  lastModified: Date.now(),
+                }
+              );
+              resolve(newFile);
+            } else {
+              reject(new Error("Erro ao converter imagem"));
+            }
+          }, "image/png");
+        };
+      };
+
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDisable(true);
@@ -59,7 +98,6 @@ const Page = () => {
 
     if (errors.length === 0) {
       const fData = new FormData();
-
       fData.append("title", title);
       fData.append("price", price);
       fData.append("priceneg", priceNegotiable);
@@ -68,7 +106,15 @@ const Page = () => {
 
       if (fileField.current.files.length > 0) {
         for (let i = 0; i < fileField.current.files.length; i++) {
-          fData.append("img", fileField.current.files[i]);
+          const file = fileField.current.files[i];
+
+          if (file.type === "image/webp") {
+            // Converter WebP para PNG antes de enviar
+            const convertedFile = await convertWebPtoPNG(file);
+            fData.append("img", convertedFile, convertedFile.name);
+          } else {
+            fData.append("img", file);
+          }
         }
       }
 

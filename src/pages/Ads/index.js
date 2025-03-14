@@ -6,7 +6,7 @@ import { PageContainer } from "../../components/MainComponets";
 import OlxApi from "../../helpers/OlxApi";
 
 ///import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import AdItem from "../../components/partial/AdItem";
 
 const Page = () => {
@@ -57,8 +57,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (adList.length > 0) {
-      setPageCount(Math.ceil(adsTotal / adList.length));
+    if (adsTotal > 0) {
+      setPageCount(Math.ceil(adsTotal / 2)); // 2 é o limit definido no getAdsList
     } else {
       setPageCount(0);
     }
