@@ -5,6 +5,18 @@ import { Item } from "./styled";
 const AdItem = ({ data }) => {
   if (!data) return null;
 
+  // Verifica e ajusta a URL da imagem, se necessário
+  let imageUrl = data.image;
+  if (
+    imageUrl &&
+    imageUrl.startsWith("https://back-and-api-basica.onrender.com/media/")
+  ) {
+    imageUrl = imageUrl.replace(
+      "https://back-and-api-basica.onrender.com/media/",
+      ""
+    );
+  }
+
   const price = data.priceNegotiable ? "Preço negociável" : `R$ ${data.price}`;
 
   return (
@@ -12,7 +24,7 @@ const AdItem = ({ data }) => {
       <Link to={`/ad/${data.id}`}>
         <div className="itemImage">
           <img
-            src={data.image || "/default-image.jpg"}
+            src={imageUrl || "/default-image.jpg"}
             alt={data.title || "Anúncio"}
           />
         </div>
