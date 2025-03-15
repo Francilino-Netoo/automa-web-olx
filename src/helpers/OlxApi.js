@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import qs from "qs";
 
-const BASEAPI = "https://automa-web-olx.vercel.app";
+const BASEAPI = "https://back-and-api-basica.onrender.com";
 
 //https://automa-web-olx.vercel.app/
 
