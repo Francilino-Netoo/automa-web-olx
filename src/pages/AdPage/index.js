@@ -92,10 +92,12 @@ const Page = () => {
                   {adInfo.images.map((img, k) => {
                     let imageUrl = img;
                     if (
-                      img.startsWith("http://192.168.5.200:5000/media/https")
+                      img.startsWith(
+                        "https://back-and-api-basica.onrender.com/media/https"
+                      )
                     ) {
                       imageUrl = img.replace(
-                        "http://192.168.5.200:5000/media/",
+                        "https://back-and-api-basica.onrender.com/media/",
                         ""
                       );
                     }

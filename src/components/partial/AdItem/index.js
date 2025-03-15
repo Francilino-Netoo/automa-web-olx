@@ -7,8 +7,13 @@ const AdItem = ({ data }) => {
 
   let imageUrl = data.image;
 
-  if (imageUrl.includes("http://192.168.5.200:5000/media/https")) {
-    imageUrl = imageUrl.replace("http://192.168.5.200:5000/media/", "");
+  if (
+    imageUrl.includes("https://back-and-api-basica.onrender.com/media/https")
+  ) {
+    imageUrl = imageUrl.replace(
+      "https://back-and-api-basica.onrender.com/media/",
+      ""
+    );
   }
 
   if (!imageUrl || !imageUrl.startsWith("http")) {
