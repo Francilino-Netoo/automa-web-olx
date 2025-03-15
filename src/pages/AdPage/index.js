@@ -89,11 +89,20 @@ const Page = () => {
               {loading && <Fake height={300} />}
               {adInfo.images && (
                 <Slide>
-                  {adInfo.images.map((img, k) => (
+                  {adInfo.images.map((img, k) => {
+                    let imageUrl = img;
+                    if (
+                      img.startsWith("http://192.168.5.200:5000/media/https")
+                    ) {
+                      imageUrl = img.replace(
+                        "http://192.168.5.200:5000/media/",
+                        ""
+                      );
+                    }
                     <div key={k} className="each-slide">
-                      <img src={img} alt="" />
-                    </div>
-                  ))}
+                      <img src={imageUrl} alt={`Imagem ${k}`} />
+                    </div>;
+                  })}
                 </Slide>
               )}
             </div>

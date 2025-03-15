@@ -5,10 +5,15 @@ import { Item } from "./styled";
 const AdItem = ({ data }) => {
   if (!data) return null;
 
-  // Adiciona a URL completa caso esteja faltando
-  const imageUrl = data.image.startsWith("http")
-    ? data.image
-    : `https://back-and-api-basica.onrender.com/media/${data.image}`;
+  let imageUrl = data.image;
+
+  if (imageUrl.includes("http://192.168.5.200:5000/media/https")) {
+    imageUrl = imageUrl.replace("http://192.168.5.200:5000/media/", "");
+  }
+
+  if (!imageUrl || !imageUrl.startsWith("http")) {
+    imageUrl = "https://via.placeholder.com/150";
+  }
 
   const price = data.priceNegotiable ? "Preço negociável" : `R$ ${data.price}`;
 

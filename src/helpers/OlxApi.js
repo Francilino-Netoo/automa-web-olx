@@ -1,7 +1,9 @@
 import Cookies from "js-cookie";
 import qs from "qs";
 
-const BASEAPI = "https://back-and-api-basica.onrender.com";
+const BASEAPI = "https://automa-web-olx.vercel.app";
+
+//https://automa-web-olx.vercel.app/
 
 const apiFetchFile = async (endpoint, body) => {
   if (!body.token) {
