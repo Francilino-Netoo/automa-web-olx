@@ -34,6 +34,16 @@ export const HeaderArea = styled.div`
       color: #0000ff;
     }
   }
+  nav a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+  }
+  nav a.active {
+    color: blue;
+    font-weight: bold;
+  }
   nav {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -81,22 +91,104 @@ export const HeaderArea = styled.div`
   }
 
   @media (max-width: 600px) {
-    & {
-      height: auto;
-    }
+    height: auto;
+
     .container {
-      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
     .logo {
-      justify-content: center;
-      margin: 20px 0;
+      justify-content: left;
+      margin: 10px 10px;
     }
+
     nav ul {
-      flex-direction: column;
-      height: auto;
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
+
     nav li {
-      margin: 10px 15px;
+      display: flex;
+      align-items: center;
+      margin-right: 0;
     }
+    nav a {
+      text-decoration: none;
+      color: black;
+      transition: color 0.3s ease;
+    }
+    nav a.active {
+      color: blue;
+      font-weight: bold;
+    }
+  }
+`;
+
+export const Sidebar = styled.div`
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #999;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+
+  &.open {
+    left: 0;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  li {
+    list-style: none;
+    margin: 10px 0; /* Adiciona espaçamento entre os itens */
+    padding: 5px 0;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+  }
+
+  nav a:hover {
+    color: #ff8100;
+  }
+
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
+export const MenuButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: 600px) {
+    display: none;
   }
 `;

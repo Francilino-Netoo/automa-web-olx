@@ -11,6 +11,8 @@ import SignUp from "./pages/SignUp";
 import AdPage from "./pages/AdPage";
 import AddAd from "./pages/AddAd";
 import Ads from "./pages/Ads";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 export default function AppRoutes() {
   return (
@@ -25,6 +27,8 @@ export default function AppRoutes() {
         element={<PrivateRoute element={<AddAd />} />}
       />
       <Route path="/ads" element={<Ads />} />
+      <Route path="/user/me" element={<Profile />} />
+      <Route path="/user/me/edit" element={<EditProfile />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

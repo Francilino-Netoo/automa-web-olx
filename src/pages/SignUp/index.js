@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PageArea } from "./styles";
 
-import {
-  PageContainer,
-  PageTitle,
-  ErrorMessage,
-} from "../../components/MainComponets";
+import { PageContainer, ErrorMessage } from "../../components/MainComponets";
 
 import OlxApi from "../../helpers/OlxApi";
 
@@ -30,7 +26,7 @@ const Page = () => {
       setStateList(slist);
     };
     getStates();
-  }, [api]); // Adicionando api ao array de dependências
+  }, [api]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,10 +69,7 @@ const Page = () => {
 
   return (
     <PageContainer>
-      <PageTitle>Cadastro</PageTitle>
       <PageArea>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-
         <form onSubmit={handleSubmit}>
           <label className="area">
             <div className="area-title">Nome Completo</div>

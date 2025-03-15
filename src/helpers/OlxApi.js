@@ -3,7 +3,7 @@ import qs from "qs";
 
 const BASEAPI = "https://back-and-api-basica.onrender.com";
 
-//https://automa-web-olx.vercel.app/
+//https://back-and-api-basica.onrender.com
 
 const apiFetchFile = async (endpoint, body) => {
   if (!body.token) {
@@ -76,6 +76,33 @@ const apiFetchGet = async (endpoint, body = []) => {
   return json;
 };
 
+const apiFetchPut = async (endpoint, body) => {
+  if (!body.token) {
+    let token = Cookies.get("token");
+    if (token) {
+      body.token = token;
+    }
+  }
+
+  const res = await fetch(BASEAPI + endpoint, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  const json = await res.json();
+
+  if (json.notallowed) {
+    window.location.href = "/user/me";
+    return;
+  }
+
+  return json;
+};
+
 const OlxApi = {
   login: async (email, password) => {
     return await apiFetchPost("/user/signin", { email, password });
@@ -108,6 +135,20 @@ const OlxApi = {
   addAd: async (fData) => {
     const json = await apiFetchFile("/ad/add", fData);
     return json;
+  },
+  getProfile: async (token) => {
+    const json = await apiFetchGet("/user/me", { token });
+    return json;
+  },
+  updateProfile: async (name, email, password, state) => {
+    let token = Cookies.get("token");
+    return await apiFetchPut("/user/me", {
+      token,
+      name,
+      email,
+      password,
+      state,
+    });
   },
 };
 

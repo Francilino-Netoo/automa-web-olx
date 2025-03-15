@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { PageArea } from "./styles";
 
-import {
-  PageContainer,
-  PageTitle,
-  ErrorMessage,
-} from "../../components/MainComponets";
+import { PageContainer, ErrorMessage } from "../../components/MainComponets";
 
 import OlxApi from "../../helpers/OlxApi";
 
@@ -25,11 +21,12 @@ const Page = () => {
     e.preventDefault();
 
     setDisable(true);
+    setError("");
 
     const json = await api.login(email, password);
 
     if (json.error) {
-      setError();
+      setError(json.error);
       setDisable(false);
       Swal.fire({
         icon: "warning",
@@ -49,10 +46,7 @@ const Page = () => {
 
   return (
     <PageContainer>
-      <PageTitle>Login</PageTitle>
       <PageArea>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-
         <form onSubmit={handleSubmit}>
           <label className="area">
             <div className="area-title">E-mail</div>

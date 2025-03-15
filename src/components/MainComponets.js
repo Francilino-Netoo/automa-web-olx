@@ -5,7 +5,12 @@ export const PageContainer = styled.div`
   max-width: 1000px;
   margin: auto;
 `;
-export const PageTitle = styled.h1``;
+export const PageTitle = styled.h1`
+  margin: 10px 5px;
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
+`;
 export const PageBody = styled.div``;
 
 export const ErrorMessage = styled.div`
