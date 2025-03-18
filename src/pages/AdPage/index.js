@@ -103,7 +103,6 @@ const Page = () => {
                     }
 
                     return (
-                      // ADICIONE O RETURN AQUI
                       <div key={k} className="each-slide">
                         <img src={imageUrl} alt={`Imagem ${k}`} />
                       </div>

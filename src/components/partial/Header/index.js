@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HeaderArea, Sidebar } from "./styled";
 import { isLogged, doLogout } from "../../../helpers/authHandler";
@@ -8,6 +8,26 @@ const Header = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 600);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,7 +64,7 @@ const Header = () => {
         )}
 
         {isMobile && (
-          <Sidebar className={menuOpen ? "open" : ""}>
+          <Sidebar ref={menuRef} className={menuOpen ? "open" : ""}>
             <button className="close-button" onClick={() => setMenuOpen(false)}>
               ✖
             </button>
@@ -98,6 +118,51 @@ const Header = () => {
               )}
             </ul>
           </Sidebar>
+        )}
+
+        {!isMobile && (
+          <nav>
+            <ul>
+              {logged ? (
+                <>
+                  <li>
+                    <Link to="/user/me">Minha Conta</Link>
+                  </li>
+                  <li>
+                    <Link to="/post-an-ad" className="button">
+                      Poste um anúncio
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>Sair</button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link
+                      to="/signin"
+                      className={
+                        location.pathname === "/signin" ? "active" : ""
+                      }
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/signup"
+                      className={
+                        location.pathname === "/signup" ? "active" : ""
+                      }
+                    >
+                      Cadastrar
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
         )}
       </div>
     </HeaderArea>

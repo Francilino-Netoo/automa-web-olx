@@ -44,7 +44,7 @@ const Page = () => {
 
     const json = await api.getAds({
       sort: "desc",
-      limit: 2,
+      limit: 4,
       q,
       cat,
       state,
@@ -58,7 +58,7 @@ const Page = () => {
 
   useEffect(() => {
     if (adsTotal > 0) {
-      setPageCount(Math.ceil(adsTotal / 2)); // 2 é o limit definido no getAdsList
+      setPageCount(Math.ceil(adsTotal / 2));
     } else {
       setPageCount(0);
     }

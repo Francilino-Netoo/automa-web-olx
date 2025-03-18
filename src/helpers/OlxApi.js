@@ -150,6 +150,9 @@ const OlxApi = {
       state,
     });
   },
+  updateAds: async (adId, fData) => {
+    return await apiFetchFile(`/ad/${adId}`, fData, true);
+  },
 };
 
 export default () => OlxApi;

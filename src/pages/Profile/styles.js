@@ -117,7 +117,115 @@ export const PageArea = styled.div`
             margin: 2px 0;
           }
         }
+        .editAdButton {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background: #007bff;
+          color: white;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 5px;
+          font-size: 10px;
+          cursor: pointer;
+          transition: background 0.3s;
+          margin-top: 8px;
+        }
+
+        .editAdButton:hover {
+          background: #0056b3;
+        }
+
+        .editAdButton svg {
+          font-size: 16px;
+        }
       }
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      min-width: 300px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .modal-content label {
+      font-weight: bold;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .modal-content textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      flex-grow: 1;
+      min-height: 120px;
+      max-height: 250px;
+      resize: vertical;
+    }
+
+    .previewImage {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-buttons button {
+      flex: 1;
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      min-width: 120px;
+    }
+
+    .modal-buttons button:first-child {
+      background: #28a745;
+      color: white;
+    }
+
+    .modal-buttons button:last-child {
+      background: #dc3545;
+      color: white;
     }
   }
 

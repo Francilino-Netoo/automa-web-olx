@@ -109,7 +109,6 @@ const Page = () => {
           const file = fileField.current.files[i];
 
           if (file.type === "image/webp") {
-            // Converter WebP para PNG antes de enviar
             const convertedFile = await convertWebPtoPNG(file);
             fData.append("img", convertedFile, convertedFile.name);
           } else {

@@ -125,6 +125,10 @@ export const HeaderArea = styled.div`
       color: blue;
       font-weight: bold;
     }
+    .menu-button {
+      height: auto;
+      margin: 10px;
+    }
   }
 `;
 
@@ -134,11 +138,12 @@ export const Sidebar = styled.div`
   left: -250px;
   width: 250px;
   height: 100vh;
-  background: #999;
+  background: rgb(31, 103, 147);
   color: white;
   padding: 20px;
   transition: left 0.3s ease;
   z-index: 1000;
+  border-top-right-radius: 30px;
 
   &.open {
     left: 0;
@@ -161,19 +166,45 @@ export const Sidebar = styled.div`
 
   li {
     list-style: none;
-    margin: 10px 0; /* Adiciona espaçamento entre os itens */
+    margin: 10px 0;
     padding: 5px 0;
   }
 
-  nav a {
-    text-decoration: none;
+  li button {
+    background: none;
+    border: none;
     color: white;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 5px 0;
+  }
+
+  li button:focus {
+    outline: none;
+  }
+
+  li button:hover {
+    color: #ff8100 !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: white !important;
     font-size: 18px;
     display: block;
   }
 
-  nav a:hover {
-    color: #ff8100;
+  a.active {
+    color: white !important;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: #ff8100 !important;
   }
 
   @media (min-width: 600px) {
